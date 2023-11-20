@@ -1,32 +1,32 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { MatInputModule } from '@angular/material/input';
+
 import { MatButtonModule } from '@angular/material/button';
+import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatIconModule } from '@angular/material/icon';
+import { MatInputModule } from '@angular/material/input';
+import { MatRadioModule } from '@angular/material/radio';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
-
-import { FsMaskModule } from '@firestitch/mask';
-import { FsFormModule } from '@firestitch/form';
-import { FsCommonModule } from '@firestitch/common';
-import { FsDatePickerModule } from '@firestitch/datepicker';
-import { FsDateModule } from '@firestitch/date';
 import { FsCheckboxGroupModule } from '@firestitch/checkboxgroup';
+import { FsCommonModule } from '@firestitch/common';
+import { FsDateModule } from '@firestitch/date';
+import { FsDatePickerModule } from '@firestitch/datepicker';
+import { FsFormModule } from '@firestitch/form';
+import { FsLabelModule } from '@firestitch/label';
+import { FsMaskModule } from '@firestitch/mask';
+import { FsMenuModule } from '@firestitch/menu';
+import { FsPdfViewerModule } from '@firestitch/pdf-viewer';
 import { FsRadioGroupModule } from '@firestitch/radiogroup';
 import { FsSignatureModule } from '@firestitch/signature';
 
-import { FsPdfFormComponent } from './components/pdf-form/pdf-form.component';
-import { FsPdfViewerModule } from '../pdf-viewer/fs-pdf-viewer.module';
-import { FieldComponent } from './components/field/field.component';
 import { FieldInputComponent } from './components/field-input/field-input.component';
 import { FieldRenderComponent } from './components/field-render/field-render.component';
+import { FieldComponent } from './components/field/field.component';
 import { HeaderComponent } from './components/header/header.component';
-import { MatRadioModule } from '@angular/material/radio';
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
-import { FsMenuModule } from '@firestitch/menu';
-import { FsLabelModule } from '@firestitch/label';
+import { FsPdfFormComponent } from './components/pdf-form/pdf-form.component';
 
 
 @NgModule({
@@ -43,7 +43,7 @@ import { FsLabelModule } from '@firestitch/label';
     MatIconModule,
 
     FsFormModule,
-    FsCommonModule,  
+    FsCommonModule,
     FsMaskModule,
     FsDatePickerModule,
     FsCheckboxGroupModule,
@@ -53,7 +53,7 @@ import { FsLabelModule } from '@firestitch/label';
     FsSignatureModule,
     FsLabelModule,
 
-    FsPdfViewerModule, 
+    FsPdfViewerModule,
   ],
   exports: [
     FsPdfFormComponent,
@@ -64,6 +64,6 @@ import { FsLabelModule } from '@firestitch/label';
     FsPdfFormComponent,
     HeaderComponent,
     FieldRenderComponent,
-  ]
+  ],
 })
-export class FsPdfFormModule {}
+export class FsPdfFormModule { }

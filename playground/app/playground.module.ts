@@ -1,21 +1,21 @@
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule, Routes } from '@angular/router';
 
+import { FsApiModule } from '@firestitch/api';
 import { FsDatePickerModule } from '@firestitch/datepicker';
 import { FsExampleModule } from '@firestitch/example';
 import { FsMessageModule } from '@firestitch/message';
-import { FsPdfViewerModule } from '@firestitch/pdf';
+import { FsPdfViewerModule } from '@firestitch/pdf-viewer';
 
-import { FsApiModule } from '@firestitch/api';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FsPdfFormModule } from 'src/app/modules/pdf-form/fs-pdf-form.module';
+
 import { AppComponent } from './app.component';
 import {
   ExamplesComponent,
   FormComponent,
-  ViewerComponent,
 } from './components';
 import { AppMaterialModule } from './material.module';
 
@@ -44,7 +44,6 @@ const routes: Routes = [
   declarations: [
     AppComponent,
     ExamplesComponent,
-    ViewerComponent,
     FormComponent,
   ],
 })

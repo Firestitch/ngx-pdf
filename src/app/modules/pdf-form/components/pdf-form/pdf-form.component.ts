@@ -18,6 +18,7 @@ import { ComponentPortal, DomPortalOutlet } from '@angular/cdk/portal';
 import { MatSidenavContent } from '@angular/material/sidenav';
 
 import { FsApiFile } from '@firestitch/api';
+import { FsPdfViewerComponent } from '@firestitch/pdf-viewer';
 
 import { Subject } from 'rxjs';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
@@ -25,7 +26,6 @@ import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 
 import { PageRenderedEvent } from 'ngx-extended-pdf-viewer';
 
-import { FsPdfViewerComponent } from '../../../pdf-viewer/components/pdf-viewer';
 import { FieldType } from '../../enums';
 import { PdfField } from '../../interfaces';
 import { FieldService } from '../../services';
