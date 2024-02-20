@@ -46,7 +46,6 @@
     "@angular/platform-browser": "^13.4.0",
     "@angular/platform-browser-dynamic": "^13.4.0",
     "@angular/router": "^13.4.0",
-    "@compodoc/compodoc": "^1.1.11",
     "@firestitch/api": "^12.4.0",
     "@firestitch/autocomplete": "^12.5.3",
     "@firestitch/autocomplete-chips": "^12.5.12",
