@@ -6,10 +6,6 @@ import {
 } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
-import {
-  NgxExtendedPdfViewerService,
-} from 'ngx-extended-pdf-viewer';
-
 import { Subject } from 'rxjs';
 
 import { FieldFormat, FieldType } from '../../enums';
@@ -21,7 +17,6 @@ import { PdfField } from '../../interfaces';
   templateUrl: './field-render.component.html',
   styleUrls: ['./field-render.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [NgxExtendedPdfViewerService],
 })
 export class FieldRenderComponent implements OnDestroy {
 

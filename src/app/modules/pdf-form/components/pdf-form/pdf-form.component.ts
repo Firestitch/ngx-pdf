@@ -23,9 +23,6 @@ import { FsPdfViewerComponent } from '@firestitch/pdf-viewer';
 import { Subject } from 'rxjs';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
 
-
-import { PageRenderedEvent } from 'ngx-extended-pdf-viewer';
-
 import { FieldType } from '../../enums';
 import { PdfField } from '../../interfaces';
 import { FieldService } from '../../services';
@@ -143,7 +140,7 @@ export class FsPdfFormComponent implements OnInit, OnDestroy {
     return this._fieldService.getFields();
   }
 
-  public pageRendered(event: PageRenderedEvent): void {
+  public pageRendered(event): void {
     const scale = event.source.viewport.scale;
     const page = event.source.div;
 

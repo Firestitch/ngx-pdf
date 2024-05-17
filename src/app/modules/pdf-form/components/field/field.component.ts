@@ -12,10 +12,6 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { Subject } from 'rxjs';
 import { filter, takeUntil, tap } from 'rxjs/operators';
 
-import {
-  NgxExtendedPdfViewerService,
-} from 'ngx-extended-pdf-viewer';
-
 import { FieldFormat, FieldType } from '../../enums';
 import { hasValue, pdfFieldRequired } from '../../helpers';
 import { PdfField } from '../../interfaces';
@@ -26,7 +22,6 @@ import { FieldService } from '../../services/field-service';
   templateUrl: './field.component.html',
   styleUrls: ['./field.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [NgxExtendedPdfViewerService],
 })
 export class FieldComponent implements OnInit, OnDestroy {
 
