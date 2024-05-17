@@ -28,9 +28,6 @@
     "serve": "cd node_modules/@firestitch/component-tools && npm run cli:serve",
     "npm-update": "npx npm-check-updates -u \"/@firestitch/\" --target semver"
   },
-  "dependencies": {
-    "ngx-extended-pdf-viewer": "^14.0.7"
-  },
   "devDependencies": {
     "@angular-devkit/build-angular": "~13.3.11",
     "@angular-devkit/core": "^13.3.11",
