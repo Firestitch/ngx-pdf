@@ -118,18 +118,15 @@ export class FsPdfFormComponent implements OnInit, OnDestroy {
         this.finished.emit();
       });
 
-    // this.started
-    //   .pipe(
-    //     takeUntil(this._destroy$),
-    //   )
-    //   .subscribe(() => {
-    //     this.hasStarted = true;
-    //     this.sidenav.opened = true;
-    //     this._fieldService.selectField = this._fieldService.getFirstField();
-    //     setTimeout(() => {
-    //       this.pdfViewer.resize();
-    //     });
-    //   });
+    this.started
+      .pipe(
+        takeUntil(this._destroy$),
+      )
+      .subscribe(() => {
+        this.hasStarted = true;
+        this.sidenav.opened = true;
+        this._fieldService.selectField = this._fieldService.getFirstField();
+      });
   }
 
   public get el(): any {
