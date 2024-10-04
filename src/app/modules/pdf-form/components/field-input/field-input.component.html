@@ -16,7 +16,7 @@
   <ng-container *ngIf="!field.readonly; else readonly">
     <ng-container [ngSwitch]="field.type">      
       <ng-container *ngSwitchCase="FieldType.LongText">
-        <mat-form-field floatLabel="never">
+        <mat-form-field>
           <textarea
             #input
             matInput
@@ -33,7 +33,7 @@
       <ng-container *ngSwitchCase="FieldType.ShortText">
         <ng-container [ngSwitch]="field.format">
           <ng-container *ngSwitchCase="FieldFormat.Currency">
-            <mat-form-field floatLabel="never">
+            <mat-form-field>
               <input
                 #input
                 matInput
@@ -50,7 +50,7 @@
             </mat-form-field> 
           </ng-container>
           <ng-container *ngSwitchCase="FieldFormat.Number">
-            <mat-form-field floatLabel="never">
+            <mat-form-field>
               <input
                 #input
                 matInput
@@ -68,7 +68,7 @@
             </mat-form-field>
           </ng-container>
           <ng-container *ngSwitchDefault>
-            <mat-form-field floatLabel="never">
+            <mat-form-field>
               <input
                 #input
                 matInput
@@ -86,7 +86,7 @@
       </ng-container>
 
       <ng-container *ngSwitchCase="FieldType.Date">
-        <mat-form-field floatLabel="never">
+        <mat-form-field>
           <input
             #input
             matInput
