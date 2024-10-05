@@ -200,7 +200,7 @@ export class FieldService implements OnDestroy {
         },
       ],
     }).subscribe(() => {
-      this._finished$.next();
+      this._finished$.next(null);
     });
   }
 
@@ -291,7 +291,7 @@ export class FieldService implements OnDestroy {
   }
 
   public ngOnDestroy(): void {
-    this._destroy$.next();
+    this._destroy$.next(null);
     this._destroy$.complete();
   }
 

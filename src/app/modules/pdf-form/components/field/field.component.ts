@@ -112,7 +112,7 @@ export class FieldComponent implements OnInit, OnDestroy {
 
   public ngOnDestroy(): void {
     this._fieldService.removeField(this._field);
-    this._destroy$.next();
+    this._destroy$.next(null);
     this._destroy$.complete();
   }
 }
