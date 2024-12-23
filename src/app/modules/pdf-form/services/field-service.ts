@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { BehaviorSubject, catchError, filter, Observable, of, Subject } from 'rxjs';
 
 import { FieldType } from '../enums';
 import { groupFieldRequired, hasValue, initField, pdfFieldRequired } from '../helpers';
@@ -199,9 +199,14 @@ export class FieldService implements OnDestroy {
           cancel: true,
         },
       ],
-    }).subscribe(() => {
-      this._finished$.next(null);
-    });
+    })
+      .pipe(
+        catchError(() => of(null)),
+        filter((result) => !!result),
+      )
+      .subscribe(() => {
+        this._finished$.next(null);
+      });
   }
 
   public getFieldIndex(field: PdfField): number {
