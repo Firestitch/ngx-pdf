@@ -15,17 +15,45 @@ import { MatInput } from '@angular/material/input';
 import { merge, Observable, of, Subject } from 'rxjs';
 import { FieldFormat, FieldType } from '../../enums';
 
-import { FsFormDirective } from '@firestitch/form';
+import { FsFormDirective, FsFormModule } from '@firestitch/form';
 import { map, takeUntil } from 'rxjs/operators';
 import { PdfField } from '../../interfaces';
 import { FieldService } from '../../services';
+import { FormsModule } from '@angular/forms';
+import { MatFormField, MatPrefix } from '@angular/material/form-field';
+import { FsMaskModule } from '@firestitch/mask';
+import { FsDatePickerModule } from '@firestitch/datepicker';
+import { FsRadioGroupModule } from '@firestitch/radiogroup';
+import { MatRadioButton } from '@angular/material/radio';
+import { MatCheckbox } from '@angular/material/checkbox';
+import { FsLabelModule } from '@firestitch/label';
+import { FsSignatureModule } from '@firestitch/signature';
+import { FieldRenderComponent } from '../field-render/field-render.component';
+import { MatButton } from '@angular/material/button';
 
 
 @Component({
-  selector: 'fs-field-input',
-  templateUrl: './field-input.component.html',
-  styleUrls: ['./field-input.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'fs-field-input',
+    templateUrl: './field-input.component.html',
+    styleUrls: ['./field-input.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [
+        FormsModule,
+        FsFormModule,
+        MatFormField,
+        MatInput,
+        FsMaskModule,
+        MatPrefix,
+        FsDatePickerModule,
+        FsRadioGroupModule,
+        MatRadioButton,
+        MatCheckbox,
+        FsLabelModule,
+        FsSignatureModule,
+        FieldRenderComponent,
+        MatButton,
+    ],
 })
 export class FieldInputComponent implements OnInit, OnDestroy {
 

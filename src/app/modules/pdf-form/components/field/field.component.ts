@@ -16,12 +16,16 @@ import { FieldFormat, FieldType } from '../../enums';
 import { hasValue, pdfFieldRequired } from '../../helpers';
 import { PdfField } from '../../interfaces';
 import { FieldService } from '../../services/field-service';
+import { NgClass } from '@angular/common';
+import { FieldRenderComponent } from '../field-render/field-render.component';
 
 
 @Component({
-  templateUrl: './field.component.html',
-  styleUrls: ['./field.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    templateUrl: './field.component.html',
+    styleUrls: ['./field.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [NgClass, FieldRenderComponent],
 })
 export class FieldComponent implements OnInit, OnDestroy {
 

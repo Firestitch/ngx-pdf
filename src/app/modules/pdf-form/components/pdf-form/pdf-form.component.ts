@@ -15,10 +15,10 @@ import {
 } from '@angular/core';
 
 import { ComponentPortal, DomPortalOutlet } from '@angular/cdk/portal';
-import { MatSidenavContent } from '@angular/material/sidenav';
+import { MatSidenavContent, MatSidenavContainer, MatSidenav } from '@angular/material/sidenav';
 
 import { FsApiFile } from '@firestitch/api';
-import { FsPdfViewerComponent } from '@firestitch/pdf-viewer';
+import { FsPdfViewerComponent, FsPdfViewerModule } from '@firestitch/pdf-viewer';
 
 import { Subject } from 'rxjs';
 import { debounceTime, filter, takeUntil } from 'rxjs/operators';
@@ -28,14 +28,26 @@ import { PdfField } from '../../interfaces';
 import { FieldService } from '../../services';
 import { FieldInputComponent } from '../field-input/field-input.component';
 import { FieldComponent } from '../field/field.component';
+import { NgClass } from '@angular/common';
+import { HeaderComponent } from '../header/header.component';
 
 
 @Component({
-  selector: 'fs-pdf-form',
-  templateUrl: './pdf-form.component.html',
-  styleUrls: ['./pdf-form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [FieldService],
+    selector: 'fs-pdf-form',
+    templateUrl: './pdf-form.component.html',
+    styleUrls: ['./pdf-form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    providers: [FieldService],
+    standalone: true,
+    imports: [
+        NgClass,
+        HeaderComponent,
+        MatSidenavContainer,
+        MatSidenav,
+        FieldInputComponent,
+        MatSidenavContent,
+        FsPdfViewerModule,
+    ],
 })
 export class FsPdfFormComponent implements OnInit, OnDestroy {
 

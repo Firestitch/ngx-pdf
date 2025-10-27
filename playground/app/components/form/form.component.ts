@@ -2,13 +2,16 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { FsApi } from '@firestitch/api';
+import { FsPdfFormComponent } from '../../../../src/app/modules/pdf-form/components/pdf-form/pdf-form.component';
 
 
 @Component({
-  selector: 'app-form',
-  templateUrl: './form.component.html',
-  styleUrls: ['./form.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'app-form',
+    templateUrl: './form.component.html',
+    styleUrls: ['./form.component.scss'],
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    standalone: true,
+    imports: [FsPdfFormComponent],
 })
 export class FormComponent implements OnInit {
 
