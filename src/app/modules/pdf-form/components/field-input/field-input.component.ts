@@ -1,14 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 
 import { MatInput } from '@angular/material/input';
 
@@ -56,6 +46,9 @@ import { MatButton } from '@angular/material/button';
     ],
 })
 export class FieldInputComponent implements OnInit, OnDestroy {
+  private _fieldService = inject(FieldService);
+  private _cdRef = inject(ChangeDetectorRef);
+
 
   @ViewChild('input', { read: MatInput })
   public input: MatInput;
@@ -77,11 +70,6 @@ export class FieldInputComponent implements OnInit, OnDestroy {
 
   private _destroy$ = new Subject();
   private _inputChange$ = new Subject();
-
-  constructor(
-    private _fieldService: FieldService,
-    private _cdRef: ChangeDetectorRef,
-  ) { }
 
   public changeInput(): void {
     this._inputChange$.next(this.field.value);

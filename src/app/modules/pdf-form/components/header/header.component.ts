@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  EventEmitter,
-  Input,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnDestroy, OnInit, inject } from '@angular/core';
 
 import { BreakpointObserver, BreakpointState } from '@angular/cdk/layout';
 
@@ -34,6 +26,10 @@ import { FsMenuModule } from '@firestitch/menu';
     ],
 })
 export class HeaderComponent implements OnInit, OnDestroy {
+  private _cdRef = inject(ChangeDetectorRef);
+  private _fieldService = inject(FieldService);
+  private _breakpointObserver = inject(BreakpointObserver);
+
 
   @Input() public name;
   @Input() public actions: { label?: string; click?: () => any; color?: string }[] = [];
@@ -48,12 +44,6 @@ export class HeaderComponent implements OnInit, OnDestroy {
   public mobile;
 
   private _destroy$ = new Subject();
-
-  constructor(
-    private _cdRef: ChangeDetectorRef,
-    private _fieldService: FieldService,
-    private _breakpointObserver: BreakpointObserver,
-  ) { }
 
   public ngOnInit(): void {
     this._breakpointObserver.observe('(max-width: 699px)')

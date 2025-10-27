@@ -1,9 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  Component,
-  Input,
-  OnDestroy
-} from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnDestroy, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Subject } from 'rxjs';
@@ -28,6 +23,8 @@ import { FsDateModule } from '@firestitch/date';
     ],
 })
 export class FieldRenderComponent implements OnDestroy {
+  private _sanitizer = inject(DomSanitizer);
+
 
   @Input() public field: PdfField;
   @Input() public optionValue;
@@ -36,10 +33,6 @@ export class FieldRenderComponent implements OnDestroy {
   public FieldFormat = FieldFormat;
 
   private _destroy$ = new Subject();
-
-  constructor(
-    private _sanitizer: DomSanitizer,
-  ) { }
 
   public get signatureSvg() {
     if (String(this.field.value).match(/^</)) {

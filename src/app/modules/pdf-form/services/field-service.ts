@@ -1,4 +1,4 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, inject } from '@angular/core';
 
 import { FsPrompt } from '@firestitch/prompt';
 
@@ -11,6 +11,8 @@ import { GroupField, PdfField } from '../interfaces';
 
 @Injectable()
 export class FieldService implements OnDestroy {
+  private _prompt = inject(FsPrompt);
+
 
   public containerEl;
 
@@ -21,10 +23,6 @@ export class FieldService implements OnDestroy {
   private _fieldBlurred$ = new Subject<PdfField>();
   private _finished$ = new Subject<any>();
   private _destroy$ = new Subject();
-
-  constructor(
-    private _prompt: FsPrompt,
-  ) { }
 
   public init(fields: PdfField[]) {
     fields

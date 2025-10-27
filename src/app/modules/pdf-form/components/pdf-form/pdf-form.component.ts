@@ -1,18 +1,4 @@
-import {
-  ApplicationRef,
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  ComponentFactoryResolver,
-  ElementRef,
-  EventEmitter,
-  Injector,
-  Input,
-  OnDestroy,
-  OnInit,
-  Output,
-  ViewChild,
-} from '@angular/core';
+import { ApplicationRef, ChangeDetectionStrategy, ChangeDetectorRef, Component, ComponentFactoryResolver, ElementRef, EventEmitter, Injector, Input, OnDestroy, OnInit, Output, ViewChild, inject } from '@angular/core';
 
 import { ComponentPortal, DomPortalOutlet } from '@angular/cdk/portal';
 import { MatSidenavContent, MatSidenavContainer, MatSidenav } from '@angular/material/sidenav';
@@ -50,6 +36,13 @@ import { HeaderComponent } from '../header/header.component';
     ],
 })
 export class FsPdfFormComponent implements OnInit, OnDestroy {
+  private _el = inject(ElementRef);
+  private _componentFactoryResolver = inject(ComponentFactoryResolver);
+  private _appRef = inject(ApplicationRef);
+  private _injector = inject(Injector);
+  private _cdRef = inject(ChangeDetectorRef);
+  private _fieldService = inject(FieldService);
+
 
   @ViewChild(MatSidenavContent, { static: true })
   public sidenavContent: MatSidenavContent;
@@ -80,15 +73,6 @@ export class FsPdfFormComponent implements OnInit, OnDestroy {
   };
 
   private _destroy$ = new Subject();
-
-  constructor(
-    private _el: ElementRef,
-    private _componentFactoryResolver: ComponentFactoryResolver,
-    private _appRef: ApplicationRef,
-    private _injector: Injector,
-    private _cdRef: ChangeDetectorRef,
-    private _fieldService: FieldService,
-  ) { }
 
   public ngOnInit(): void {
     this._fieldService.init(this.fields);

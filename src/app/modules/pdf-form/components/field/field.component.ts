@@ -1,12 +1,4 @@
-import {
-  ChangeDetectionStrategy,
-  ChangeDetectorRef,
-  Component,
-  HostListener,
-  Inject,
-  OnDestroy,
-  OnInit,
-} from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit, inject } from '@angular/core';
 import { DomSanitizer } from '@angular/platform-browser';
 
 import { Subject } from 'rxjs';
@@ -28,6 +20,16 @@ import { FieldRenderComponent } from '../field-render/field-render.component';
     imports: [NgClass, FieldRenderComponent],
 })
 export class FieldComponent implements OnInit, OnDestroy {
+  private _field = inject<PdfField>('field' as any);
+  private _fieldService = inject<FieldService>('fieldService' as any);
+  optionValue = inject<{
+    value: any;
+    label: any;
+}>('optionValue' as any);
+  scale = inject<number>('scale' as any);
+  private _cdRef = inject(ChangeDetectorRef);
+  protected _sanitizer = inject(DomSanitizer);
+
 
   public selected = false;
   public FieldType = FieldType;
@@ -35,15 +37,6 @@ export class FieldComponent implements OnInit, OnDestroy {
   public fontScaleThreshold = 9;
 
   private _destroy$ = new Subject();
-
-  constructor(
-    @Inject('field') private _field: PdfField,
-    @Inject('fieldService') private _fieldService: FieldService,
-    @Inject('optionValue') public optionValue: { value: any; label: any },
-    @Inject('scale') public scale: number,
-    private _cdRef: ChangeDetectorRef,
-    protected _sanitizer: DomSanitizer,
-  ) { }
 
   @HostListener('click')
   public click(): void {

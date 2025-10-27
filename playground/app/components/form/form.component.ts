@@ -1,5 +1,5 @@
 
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, inject } from '@angular/core';
 
 import { FsApi } from '@firestitch/api';
 import { FsPdfFormComponent } from '../../../../src/app/modules/pdf-form/components/pdf-form/pdf-form.component';
@@ -14,6 +14,8 @@ import { FsPdfFormComponent } from '../../../../src/app/modules/pdf-form/compone
     imports: [FsPdfFormComponent],
 })
 export class FormComponent implements OnInit {
+  private _api = inject(FsApi);
+
 
   public pdf;
   public fields: any[] = [];
@@ -26,10 +28,6 @@ export class FormComponent implements OnInit {
       },
     },
   ];
-
-  constructor(
-    private _api: FsApi,
-  ) { }
 
   public ngOnInit(): void {
     this.pdf = this._api.createApiFile('/assets/td1-fill-22e2 (7).pdf');
