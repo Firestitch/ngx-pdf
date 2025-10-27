@@ -1,21 +1,23 @@
 <form fsForm [submit]="submit" [dirtySubmitButton]="false" [autocomplete]="false" [confirm]="false">
   <div class="heading">
     {{label}}
-    <span 
-        *ngIf="field.required"
+    @if (field.required) {
+      <span
         class="required">
-      Required
-    </span>
+        Required
+      </span>
+    }
   </div>
-  <div 
+  @if (description) {
+    <div
       class="description"
-      *ngIf="description"
       [innerHTML]="description">
-  </div>
+    </div>
+  }
 
-  <ng-container *ngIf="!field.readonly; else readonly">
-    <ng-container [ngSwitch]="field.type">      
-      <ng-container *ngSwitchCase="FieldType.LongText">
+  @if (!field.readonly) {
+    @switch (field.type) {
+      @case (FieldType.LongText) {
         <mat-form-field>
           <textarea
             #input
@@ -28,11 +30,10 @@
             name="fieldInput">
           </textarea>
         </mat-form-field>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="FieldType.ShortText">
-        <ng-container [ngSwitch]="field.format">
-          <ng-container *ngSwitchCase="FieldFormat.Currency">
+      }
+      @case (FieldType.ShortText) {
+        @switch (field.format) {
+          @case (FieldFormat.Currency) {
             <mat-form-field>
               <input
                 #input
@@ -47,9 +48,9 @@
                 format="currency"
                 name="shortText">
               <div matPrefix>$ </div>
-            </mat-form-field> 
-          </ng-container>
-          <ng-container *ngSwitchCase="FieldFormat.Number">
+            </mat-form-field>
+          }
+          @case (FieldFormat.Number) {
             <mat-form-field>
               <input
                 #input
@@ -58,7 +59,7 @@
                 [attr.autocomplete]="'off'"
                 [attr.maxLength]="field.maxLength"
                 [(ngModel)]="field.value"
-                (ngModelChange)="changeInput()"              
+                (ngModelChange)="changeInput()"
                 (blur)="blur()"
                 (keydown)="inputKeyDown($event)"
                 fsMaskNumber
@@ -66,8 +67,8 @@
                 [signed]="true"
                 name="shortText">
             </mat-form-field>
-          </ng-container>
-          <ng-container *ngSwitchDefault>
+          }
+          @default {
             <mat-form-field>
               <input
                 #input
@@ -76,16 +77,15 @@
                 [required]="field.required"
                 [attr.maxLength]="field.maxLength"
                 [(ngModel)]="field.value"
-                (ngModelChange)="changeInput()"                
+                (ngModelChange)="changeInput()"
                 (blur)="blur()"
                 (keydown)="inputKeyDown($event)"
                 name="shortText">
             </mat-form-field>
-          </ng-container>
-        </ng-container>
-      </ng-container>
-
-      <ng-container *ngSwitchCase="FieldType.Date">
+          }
+        }
+      }
+      @case (FieldType.Date) {
         <mat-form-field>
           <input
             #input
@@ -99,37 +99,37 @@
             (keydown)="inputKeyDown($event)"
             name="fieldDate">
         </mat-form-field>
-      </ng-container>
-  
-      <ng-container *ngSwitchCase="FieldType.RadioButton">
+      }
+      @case (FieldType.RadioButton) {
         <fs-radio-group
-              [(ngModel)]="radioButtonField"
-              name="fieldRadioButton"
-              [required]="field.required"
-              orientation="vertical"
-              (ngModelChange)="checkRadioButtonField(field.name, $event)">
+          [(ngModel)]="radioButtonField"
+          name="fieldRadioButton"
+          [required]="field.required"
+          orientation="vertical"
+          (ngModelChange)="checkRadioButtonField(field.name, $event)">
+          @if (!field.required) {
             <mat-radio-button
-                *ngIf="!field.required"
-                [value]="null">
+              [value]="null">
               Unspecified
             </mat-radio-button>
-           <mat-radio-button
-              *ngFor="let radioButtonField of radioButtonFields" 
+          }
+          @for (radioButtonField of radioButtonFields; track radioButtonField) {
+            <mat-radio-button
               [value]="radioButtonField">
-            {{radioButtonField.label}}
-          </mat-radio-button>
+              {{radioButtonField.label}}
+            </mat-radio-button>
+          }
         </fs-radio-group>
-      </ng-container>
-  
-      <ng-container *ngSwitchCase="FieldType.Checkbox">
+      }
+      @case (FieldType.Checkbox) {
         <mat-checkbox
-            name="fieldRadioButton"
-            [(ngModel)]="field.value"
-            (ngModelChange)="checkCheckboxField(field, $event)">
+          name="fieldRadioButton"
+          [(ngModel)]="field.value"
+          (ngModelChange)="checkCheckboxField(field, $event)">
           {{ field.label }}
-        </mat-checkbox> 
-      </ng-container>
-      <ng-container *ngSwitchCase="FieldType.Signature">  
+        </mat-checkbox>
+      }
+      @case (FieldType.Signature) {
         <fs-label-field class="fs-form-wrapper">
           <fs-signature
             name="fieldSignature"
@@ -140,9 +140,13 @@
           </fs-signature>
           <fs-label-message class="fs-form-message"></fs-label-message>
         </fs-label-field>
-      </ng-container>
-    </ng-container>
-  </ng-container>
+      }
+    }
+  } @else {
+    <fs-field-render
+      [field]="field">
+    </fs-field-render>
+  }
 
   <ng-template #readonly>
     <fs-field-render
@@ -152,22 +156,22 @@
 
   <div class="buttons">
     <button
-        mat-button
-        (click)="back()"
-        type="button">
+      mat-button
+      (click)="back()"
+      type="button">
       Back
     </button>
     <button
-        mat-button
-        color="primary"
-        type="submit">
+      mat-button
+      color="primary"
+      type="submit">
       Continue
     </button>
     <button
-        class="close"
-        mat-button
-        (click)="close()"
-        type="button">
+      class="close"
+      mat-button
+      (click)="close()"
+      type="button">
       Close
     </button>
   </div>

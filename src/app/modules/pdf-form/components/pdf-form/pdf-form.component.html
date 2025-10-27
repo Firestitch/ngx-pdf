@@ -8,27 +8,27 @@
   <div class="pdf">
     <mat-sidenav-container>
       <mat-sidenav
-          [disableClose]="false"
-          [mode]="sidenav.mode"
-          [opened]="sidenav.opened"
-          [position]="'start'"
-          [fixedInViewport]="false">
+        [disableClose]="false"
+        [mode]="sidenav.mode"
+        [opened]="sidenav.opened"
+        [position]="'start'"
+        [fixedInViewport]="false">
         <div class="sidenav-container">
-          <ng-container *ngIf="field">
-            <fs-field-input 
+          @if (field) {
+            <fs-field-input
               [field]="field"
               (closed)="sidenav.opened = false">
             </fs-field-input>
-          </ng-container>
+          }
         </div>
       </mat-sidenav>
       <mat-sidenav-content #sidenavContainer>
-        <fs-pdf-viewer 
+        <fs-pdf-viewer
           [pdf]="pdf"
           [zoom]="zoom"
           (pageRendered)="pageRendered($event)">
         </fs-pdf-viewer>
       </mat-sidenav-content>
-    </mat-sidenav-container>    
+    </mat-sidenav-container>
   </div>
 </div>
